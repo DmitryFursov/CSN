@@ -1,0 +1,24 @@
+<ng-container *ngIf="{posts: posts$ | async, users: users$ | async } as pagecontent; else loading">
+    <table>
+        <thead>
+            <th class="column left">Пользователи</th>
+            <th class="column right">Посты</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="column left">
+                    <app-smallUser *ngFor="let user of pagecontent.users" [user]="user"
+                        (subscriptionChangeEvent)="updatePosts()">
+                    </app-smallUser>
+                </td>
+                <td class="column right">
+                    <app-post *ngFor="let post of pagecontent.posts" [post]="post"></app-post>
+                </td>
+        </tbody>
+    </table>
+</ng-container>
+
+
+<ng-template #loading>
+    <p class="text-center">loading...</p>
+</ng-template>

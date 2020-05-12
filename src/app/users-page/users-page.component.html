@@ -1,0 +1,8 @@
+<div *ngIf="users$ | async as users;else loading" class="posts">
+    <app-smallUser *ngFor="let user of users" [user]="user"></app-smallUser>
+
+</div>
+
+<ng-template #loading>
+    <p class="text-center">loading...</p>
+</ng-template>

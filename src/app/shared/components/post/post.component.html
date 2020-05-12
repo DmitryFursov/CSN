@@ -1,0 +1,27 @@
+<div class="card">
+    <div class="card-header">
+        <h2>{{post.title}}</h2>
+
+        <small>{{post.date | date:'dd.MM.yyyy'}}</small>
+    </div>
+
+    <div>
+        <!--         <small>{{post.author}}</small> -->
+        <small *ngIf="author$ | async as author">{{author.firstName}} {{author.lastName}} {{author.uid}}</small>
+    </div>
+
+    <button mat-icon-button mat-fab *ngIf="isAuthenticated" (click)="ToggleLikePost()" [disabled]="action==='none'" style="margin-right: 60px;" class="btn"
+        [ngClass]="{
+        'btn-dark': action === 'like',
+        'btn-light': action === 'unlike'      
+      }">
+        <mat-icon [ngClass]="
+        {
+            'green-icon': action === 'like',
+            'red-icon': action === 'unlike'
+        }">thumb_up</mat-icon>
+        {{action === 'none' ? 'its your post': action ==='like' ? 'like' : 'unlike' }}{{localLikeList.length}}
+    </button>
+
+    <button [routerLink]="['/post', post.id]" class="btn btn-dark">Открыть</button>
+</div>

@@ -1,0 +1,31 @@
+<div *ngIf="currentUser$ | async as user">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <h1>creating new post</h1>
+
+        <div class="form-control" [ngClass]="{invalid: form.get('title').touched && form.get('title').invalid}">
+            <label for="title">Title:</label>
+            <input id="title" type="text" formControlName="title">
+            <div *ngIf="form.get('title').touched && form.get('title').invalid" class="validation">
+                <small *ngIf="form.get('title').errors.required">
+        enter post name
+      </small>
+
+            </div>
+        </div>
+
+        <div class="form-control">
+            <label>post content</label>
+            <quill-editor formControlName="text"></quill-editor>
+        </div>
+
+
+        <div>
+            <label for="author">author:</label>
+            <p>{{user.firstName}}</p>
+        </div>
+
+
+
+        <button type="submit" mat-flat-button [disabled]="form.invalid">create post</button>
+    </form>
+</div>

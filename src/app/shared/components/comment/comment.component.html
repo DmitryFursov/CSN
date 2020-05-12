@@ -1,0 +1,6 @@
+<div *ngIf="currentUser$ | async as user">
+    <a [routerLink]="['/userpage', user.uid]">
+        {{user.firstName}}
+    </a>
+        <p>{{comment.text}} </p>
+</div>

@@ -1,0 +1,21 @@
+<div *ngIf="user$ | async as user;else loading">
+    <div class="post">
+        <div class="header">
+            <h1>{{user.firstName}}</h1>
+
+            <button routerLink="/users" class="btn btn-link">To users list</button>
+        </div>
+
+        <div class="info">
+            <strong>{{ user.firstName }}</strong>
+            <small>{{ user.firstName }}</small>
+        </div>
+
+        <div>
+            <quill-view-html [content]="user.firstName"></quill-view-html>
+        </div>
+    </div>
+</div>
+<ng-template #loading>
+    <p class="text-center">loading...</p>
+</ng-template>
