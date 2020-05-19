@@ -13,7 +13,7 @@ export class CommentComponent implements OnInit {
  
   @Input() comment :Commentary
 
-  currentUser$: Observable<User>
+  user$: Observable<User>
 
 
   constructor(private auth: AuthService,private usersService:UsersService) {
@@ -21,7 +21,7 @@ export class CommentComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.currentUser$=this.usersService.getById(this.auth.uid)
+    this.user$=this.usersService.getById(this.comment.authorId)
   }
 
 }

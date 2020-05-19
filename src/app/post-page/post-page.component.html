@@ -1,4 +1,4 @@
-<div *ngIf="post$ | async as post;else loading">
+<div *ngIf="post$ | async as post;else loadingPost">
     <div class="post">
         <div class="header">
             <h1>{{post.title}}</h1>
@@ -15,13 +15,18 @@
             <quill-view-html [content]="post.text"></quill-view-html>
         </div>
     </div>
-    <div>
-        <input type="text" [(ngModel)]="commentText" placeholder="введите комментарий" />
-        <input type="submit" (click)="submit()" />
+
+    <input type="text" [(ngModel)]="commentText" placeholder="введите комментарий" />
+    <input type="submit" (click)="submit()" />
+
+    <div *ngIf="commentList$ | async as commentList; else loadingComments">
+        <app-comment *ngFor="let comment of commentList" [comment]="comment"></app-comment>
     </div>
-    <app-comment *ngFor="let comment of post.commentList" [comment]="comment"></app-comment>
 </div>
 
-<ng-template #loading>
+<ng-template #loadingPost>
     <p class="text-center">loading...</p>
+</ng-template>
+<ng-template #loadingComments>
+    <p class="text-center">loading comments...</p>
 </ng-template>
