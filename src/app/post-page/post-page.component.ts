@@ -40,19 +40,25 @@ export class PostPageComponent implements OnInit {
     }
 
     this.commentText = ''
-    this.commentList$ = this.post$.pipe(
-      tap((post) => {
-        let localCommentList: Commentary[] = []
-        if (!!post.commentList) {
-          localCommentList = post.commentList
-        }
-        localCommentList.unshift(comment)
-        post.commentList = localCommentList
-        return post
-      }),
-      mergeMap((post) => { return this.postsService.update(post) }),
-      map((post) => { return post.commentList }
+
+
+    this.commentList$ = this.route.params
+      .pipe(
+        switchMap((params: Params) => {
+          return this.postsService.getPostById(params['id'])
+        }),
+        tap((post) => {
+          let localCommentList: Commentary[] = []
+          if (!!post.commentList) {
+            localCommentList = post.commentList
+          }
+          localCommentList.unshift(comment)
+          post.commentList = localCommentList
+          return post
+        }),
+        mergeMap((post) => { return this.postsService.update(post) }),
+        map((post) => { return post.commentList }
+        )
       )
-    )
   }
 }

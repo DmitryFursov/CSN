@@ -15,8 +15,8 @@ const routes: Routes = [
       {path: '', component: HomePageComponent},
       {path: 'users', component:UsersPageComponent},
       {path: 'post/:id', component: PostPageComponent},
-      {path: 'userpage/:uid', component: UserPageComponent},
-      {path: '**',redirectTo:'/'}
+      {path: 'userpage/:uid', component: UserPageComponent}//,
+     // {path: '**',redirectTo:'/'}
     ]
   },
   {
