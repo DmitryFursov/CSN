@@ -27,7 +27,7 @@ export interface FbCreateResponse{
 export interface User {
   uid?: string
   firstName:string
-  lastName?:string
+  lastName:string
   birthDay?: Date
   regDate?:Date
   email?:string

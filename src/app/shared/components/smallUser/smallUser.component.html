@@ -1,15 +1,15 @@
-<div class="card">
-    <div class="card-header">
-        <h2>{{user.firstName}}</h2>
-        <small>{{user.firstName}}</small>
-    </div>
-    <div>
-        <small>{{user.uid}}</small>
-    </div>
-
-    <button [routerLink]="['/userpage', user.uid]" class="btn btn-dark">Открыть</button>
-    <button name="subscriptButton" *ngIf="isAuthenticated" (click)="ToggleSubscription()" [disabled]="action==='none'" class="btn" [ngClass]="{
+<mat-card class="smallUser">
+  <mat-card-title>{{user.firstName}}</mat-card-title>
+  <mat-card-footer>
+    
+    <mat-card-actions>
+      <button type="button" [routerLink]="['/userpage', user.uid]">Открыть</button>
+      <button name="subscriptButton" *ngIf="isAuthenticated" (click)="ToggleSubscription()" [disabled]="action==='none'"
+        class="btn" [ngClass]="{
         'btn-dark': action === 'add',
         'btn-light': action === 'delete'      
-      }">{{action === 'none' ? 'это вы': action ==='add' ? 'Подписаться' : 'Отписаться' }}</button>
-</div>
+      }">{{action === 'none' ? 'это вы': action ==='add' ? 'Subscribe' : 'Unsubscribe' }}</button>
+    </mat-card-actions>
+    
+  </mat-card-footer>
+</mat-card>

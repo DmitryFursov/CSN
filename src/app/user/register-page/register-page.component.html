@@ -1,18 +1,16 @@
 <form [formGroup]="form" (ngSubmit)="submit()">
-    <h1>registration new user</h1>
-
+    <h1>New User Registration</h1>
 
     <div class="form-control" [ngClass]="{invalid: form.get('email').touched && form.get('email').invalid}">
         <label for="email">Email:</label>
         <input id="email" type="text" formControlName="email">
         <div *ngIf="form.get('email').touched && form.get('email').invalid" class="validation">
             <small *ngIf="form.get('email').errors.required">
-        field empty
-      </small>
+                Field empty
+            </small>
             <small *ngIf="form.get('email').errors.email">
-        enter correctly email
-      </small>
-
+                enter correct email
+            </small>
         </div>
     </div>
 
@@ -22,15 +20,12 @@
         <div *ngIf="form.get('password').touched && form.get('password').invalid" class="validation">
 
             <small *ngIf="form.get('password').errors.required">
-        field empty
-      </small>
+                field empty
+            </small>
             <small *ngIf="form.get('password').errors.minlength">
                 Введите пароль не менее
                 {{ form.get('password').errors.minlength.requiredLength }} символов
-      </small>
-
-
-
+            </small>
         </div>
     </div>
 
@@ -39,12 +34,27 @@
         <input id="firstName" type="text" formControlName="firstName">
         <div *ngIf="form.get('firstName').touched && form.get('firstName').invalid" class="validation">
             <small *ngIf="form.get('firstName').errors.required">
-        field   empty
-        </small>
+                Please enter your First Name
+            </small>
 
         </div>
     </div>
 
+    <div class="form-control" [ngClass]="{invalid: form.get('lastName').touched && form.get('lastName').invalid}">
+        <label for="lastName">Last Name:</label>
+        <input id="lastName" type="text" formControlName="lastName">
+        <div *ngIf="form.get('lastName').touched && form.get('lastName').invalid" class="validation">
+            <small *ngIf="form.get('lastName').errors.required">
+                Please enter your Last Name
+            </small>
+        </div>
+    </div>
+
+    <div class="form-control">
+        <label for="selectPhoto">Photo</label>
+        <img [src]="photoUrl"> <br />
+        <input id="selectPhoto" type='file' accept="image/*" (change)="onSelectFile($event)" formControlName="photoUrl">
+    </div>
 
     <button type="submit" class="btn btn-block btn-dark" [disabled]="form.invalid">register</button>
 </form>

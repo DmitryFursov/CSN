@@ -14,24 +14,23 @@ export class AlertComponent implements OnInit, OnDestroy {
   public text: string
   public type = 'success'
 
-  aSub :Subscription
+  aSub: Subscription
 
-  constructor(private alertService:AlertService) { }
-  
+  constructor(private alertService: AlertService) { }
 
   ngOnInit(): void {
-    this.aSub=this.alertService.alert$.subscribe(alert=>{
+    this.aSub = this.alertService.alert$.subscribe(alert => {
       this.text = alert.text
       this.type = alert.type
 
-      const timeout = setTimeout(()=>{
+      const timeout = setTimeout(() => {
         clearTimeout(timeout)
-      },this.delay)
+      }, this.delay)
     })
   }
 
   ngOnDestroy(): void {
-    if(this.aSub){
+    if (this.aSub) {
       this.aSub.unsubscribe
     }
   }

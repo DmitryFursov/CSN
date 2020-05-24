@@ -3,7 +3,7 @@ import { Post, Commentary } from '../shared/interfaces';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Params } from '@angular/router';
 import { PostsService } from '../user/shared/services/posts.service';
-import { switchMap, map, mergeMap, take, first, count, distinct, concatMap, tap } from 'rxjs/operators';
+import { switchMap, map, mergeMap, tap } from 'rxjs/operators';
 import { AuthService } from '../user/shared/services/auth.service';
 
 @Component({

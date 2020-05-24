@@ -1,5 +1,36 @@
-<nav class="navbar main">
-  <h1>Angular Blog</h1>
+<nav class="navbar bg-primary">
+  <h1>
+    <a routerLink="/">Social Network</a>
+  </h1>
+  <h2 *ngIf="user$ | async as user">
+    <a [routerLink]="['/userpage', user.uid]">Приветствую, {{user.firstName}}</a>
+  </h2>
+
+  <ul *ngIf="auth.isAuthenticated();else HeaderForNotAuthenticated">
+    <li routerLinkActive="active">
+      <a [routerLink]="['/user', 'dashboard']">Главная</a>
+    </li>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/user', 'createpost']">Создать</a>
+    </li>
+    <li routerLinkActive="active">
+      <a [routerLink]="['', 'users']">Пользователи</a>
+    </li>
+    <li>
+      <a href="#" (click)="logout($event)">Выйти</a>
+    </li>
+  </ul>
+
+  <ng-template #HeaderForNotAuthenticated>
+    <ul>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/user','register']">SignUp</a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/user','login']">SignIn</a>
+      </li>
+    </ul>
+  </ng-template>
 </nav>
 
 <div class="container">
