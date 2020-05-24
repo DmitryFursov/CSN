@@ -1,14 +1,5 @@
 {
   "projects": {
     "default": "ang-blog-bcbbe"
-  },
-  "targets": {
-    "ang-blog-bcbbe": {
-      "hosting": {
-        "test": [
-          "ang-blog-bcbbe"
-        ]
-      }
-    }
   }
 }

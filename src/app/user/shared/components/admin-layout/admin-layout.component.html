@@ -2,10 +2,10 @@
 
 <nav class="navbar bg-primary">
     <h1>
-        <a routerLink="/">На главную</a>
+        <a routerLink="/">Angular Admin</a>
     </h1>
 
-    <ul *ngIf="auth.isAuthenticated();else HeaderForNotAuthenticated">
+    <ul *ngIf="auth.isAuthenticated()">
         <li routerLinkActive="active">
             <a [routerLink]="['/user', 'dashboard']">Главная</a>
         </li>
@@ -15,22 +15,14 @@
         <li routerLinkActive="active">
             <a [routerLink]="['', 'users']">Пользователи</a>
         </li>
+        <li routerLinkActive="active">
+            <a [routerLink]="['', '/']">HomePage</a>
+        </li>
+
         <li>
             <a href="#" (click)="logout($event)">Выйти</a>
         </li>
     </ul>
-
-    <ng-template #HeaderForNotAuthenticated>
-        <ul>
-            <li routerLinkActive="active">
-                <a [routerLink]="['/user','register']">SignUp</a>
-            </li>
-            <li routerLinkActive="active">
-                <a [routerLink]="['/user','login']">SignIn</a>
-            </li>
-        </ul>
-    </ng-template>
-
 </nav>
 
 <div class="container">

@@ -44,7 +44,8 @@ export class CreatePostComponent implements OnInit {
       title: this.form.value.title,
       author: this.auth.uid,
       text: this.form.value.text,
-      date: new Date()       
+      date: new Date()
+       
     }
      
     this.postsService.create(post).subscribe(()=>{

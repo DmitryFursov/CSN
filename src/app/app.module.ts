@@ -7,14 +7,14 @@ import { MainLayoutComponent } from './shared/components/main-layout/main-layout
 import { HomePageComponent } from './home-page/home-page.component';
 import { PostPageComponent } from './post-page/post-page.component';
 import { PostComponent } from './shared/components/post/post.component';
+import { UserModule } from './user/user.module';
 import { SharedModule } from './shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './user/shared/auth.interceptor';
 import { UsersPageComponent } from './users-page/users-page.component';
 import { UserComponent } from './shared/components/smallUser/smallUser.component';
 import { CommentComponent } from './shared/components/comment/comment.component';
-import { UserModule } from './user/user.module';
-
+//import { UserComponent } from './components/user/user.component';
 
 
 const INTERCEPTOR_PROVIDER: Provider = {
@@ -36,7 +36,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
   ],
   imports: [
     BrowserModule,
-//    UserModule,    
+    //UserModule,
+    
     AppRoutingModule,
     SharedModule
   ],

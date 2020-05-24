@@ -14,7 +14,7 @@ export class PostsService {
     private localLikeList: string[] = []
 
     create(post: Post): Observable<Post> {
-        return this.http.post(`${environment.firebaseConfig.databaseURL}/posts.json`, post)
+        return this.http.post(`${environment.fbDbUrl}/posts.json`, post)
             .pipe(map((response: FbCreateResponse) => {
                 return {
                     ...post,
@@ -25,7 +25,7 @@ export class PostsService {
     }
 
     getAll(): Observable<Post[]> {
-        return this.http.get(`${environment.firebaseConfig.databaseURL}/posts.json`)
+        return this.http.get(`${environment.fbDbUrl}/posts.json`)
             .pipe(map((response: { [key: string]: any }) => {
                 return Object
                     .keys(response)
@@ -65,7 +65,7 @@ export class PostsService {
     }
 
     getPostById(id: string): Observable<Post> {
-        return this.http.get<Post>(`${environment.firebaseConfig.databaseURL}/posts/${id}.json`)
+        return this.http.get<Post>(`${environment.fbDbUrl}/posts/${id}.json`)
             .pipe(map((post: Post) => {
 //                console.log(post)
                 return {
@@ -76,7 +76,7 @@ export class PostsService {
     }
 
     getPostsByUserId(uid: string): Observable<Post[]> {
-        return this.http.get<Post>(`${environment.firebaseConfig.databaseURL}/posts.json`, { params: { orderBy: `"author"`, equalTo: `"${uid}"` } })
+        return this.http.get<Post>(`${environment.fbDbUrl}/posts.json`, { params: { orderBy: `"author"`, equalTo: `"${uid}"` } })
             .pipe(map((response: { [key: string]: any }) => {
                 return Object
                     .keys(response)
@@ -89,12 +89,12 @@ export class PostsService {
     }
 
     remove(id: string): Observable<void> {
-        return this.http.delete<void>(`${environment.firebaseConfig.databaseURL}/posts/${id}.json`)
+        return this.http.delete<void>(`${environment.fbDbUrl}/posts/${id}.json`)
     }
 
     update(post: Post): Observable<Post> {
         console.log(post)
-        return this.http.patch<Post>(`${environment.firebaseConfig.databaseURL}/posts/${post.id}.json`, post)
+        return this.http.patch<Post>(`${environment.fbDbUrl}/posts/${post.id}.json`, post)
     }
 
     toggleLike(id: string, uid: string) {
