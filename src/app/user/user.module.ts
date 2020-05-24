@@ -6,8 +6,6 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { EditPageComponent } from './edit-page/edit-page.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from './shared/services/auth.service';
 import { SharedModule } from '../shared/shared.module';
 import { AuthGuard } from './shared/services/auth.guard';
 import { SearchPipe } from './shared/search.pipe';
@@ -15,7 +13,9 @@ import { AlertService } from './shared/services/alert.service';
 import { AlertComponent } from './shared/components/alert/alert.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { UserPageComponent } from './user-page/user-page.component';
-import { UserComponent } from '../shared/components/smallUser/smallUser.component';
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -31,8 +31,8 @@ import { UserComponent } from '../shared/components/smallUser/smallUser.componen
   ],
   imports: [
     CommonModule,
-    // FormsModule,
-    // ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
     SharedModule,
     RouterModule.forChild([
       {

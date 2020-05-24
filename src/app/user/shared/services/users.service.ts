@@ -14,7 +14,7 @@ export class UsersService {
     ) { }
 
     create(user: User, uid: string): Observable<User> {
-        return this.http.patch(`${environment.fbDbUrl}/users/${uid}.json`, user)
+        return this.http.patch(`${environment.firebaseConfig.databaseURL}/users/${uid}.json`, user)
             .pipe(map((userProfile: User) => {
                 return {
                     ...userProfile,
@@ -25,7 +25,7 @@ export class UsersService {
     }
 
     getAll(): Observable<User[]> {
-        return this.http.get(`${environment.fbDbUrl}/users.json`)
+        return this.http.get(`${environment.firebaseConfig.databaseURL}/users.json`)
             .pipe(map((response: { [key: string]: any }) => {
                 return Object
                     .keys(response)
@@ -39,7 +39,7 @@ export class UsersService {
     }
 
     getById(uid: string): Observable<User> {
-        return this.http.get<User>(`${environment.fbDbUrl}/users/${uid}.json`)
+        return this.http.get<User>(`${environment.firebaseConfig.databaseURL}/users/${uid}.json`)
             .pipe(map((userProfile: User) => {
                 //                console.log(userProfile)
                 return {
@@ -51,7 +51,7 @@ export class UsersService {
     }
 
     update(userProfile: User): Observable<User> {
-        return this.http.patch<User>(`${environment.fbDbUrl}/users/${userProfile.uid}.json`, userProfile)
+        return this.http.patch<User>(`${environment.firebaseConfig.databaseURL}/users/${userProfile.uid}.json`, userProfile)
     }
 
     toggleSubscription(uid: string): Observable<User> {

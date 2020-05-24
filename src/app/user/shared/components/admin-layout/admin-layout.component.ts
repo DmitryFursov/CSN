@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -10,8 +10,8 @@ import { AuthService } from '../../services/auth.service';
 export class UserLayoutComponent implements OnInit {
 
   constructor(
-  private router: Router,
-  public auth: AuthService
+    private router: Router,
+    public auth: AuthService
   ) {
   }
 
