@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UserAuthData, User } from 'src/app/shared/interfaces';
+import { UserAuthData, User, Sex } from 'src/app/shared/interfaces';
 import { UsersService } from '../shared/services/users.service';
 import { AuthService } from '../shared/services/auth.service';
 import { Route } from '@angular/compiler/src/core';
@@ -21,6 +21,7 @@ export class RegisterPageComponent implements OnInit {
   form: FormGroup
   photoUrl: string;
   photo: any;
+  sexValues = Object.values(Sex);
 
   constructor(
     private usersService: UsersService,
@@ -42,6 +43,8 @@ export class RegisterPageComponent implements OnInit {
       password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
       firstName: new FormControl(null, Validators.required),
       lastName: new FormControl(null, Validators.required),
+      sex: new FormControl(),
+      birthDay: new FormControl(),
       photoUrl: new FormControl(null)
     })
   }
@@ -59,9 +62,11 @@ export class RegisterPageComponent implements OnInit {
       firstName: this.form.value.firstName,
       lastName: this.form.value.lastName,
       photoUrl: this.photoUrl,
-      regDate: new Date()
+      regDate: new Date(),
+      sex: this.form.value.sex,
+      birthDay: new Date()
     }
-
+    
     this.auth.register(user).subscribe((response) => {
       //       console.log(response)
       this.usersService.create(userProfile, response.localId).subscribe(() => {

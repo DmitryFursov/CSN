@@ -24,10 +24,17 @@ export interface FbCreateResponse{
   name:string
 }
 
+export enum Sex {
+  Male = 'Male',
+  Female = 'Female',
+//  Undefined = 'Undefined'
+}
+
 export interface User {
   uid?: string
   firstName:string
   lastName:string
+  sex?: Sex
   birthDay?: Date
   regDate?:Date
   email?:string

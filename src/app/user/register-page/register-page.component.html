@@ -51,6 +51,23 @@
     </div>
 
     <div class="form-control">
+        <label for="selectSex">Sex:</label>
+        <select id="selectSex" formControlName="sex">
+            <option *ngFor="let sex of sexValues" [value]="sex">{{sex}}</option>
+        </select>
+    </div>
+
+    <div class="form-control">
+        <label for="birthDay">Sex:</label>
+        <mat-form-field>
+            <input matInput [matDatepicker]="myDatepicker">
+            <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker #myDatepicker></mat-datepicker>
+        </mat-form-field>
+    </div>
+
+
+    <div class="form-control">
         <label for="selectPhoto">Photo</label>
         <img [src]="photoUrl"> <br />
         <input id="selectPhoto" type='file' accept="image/*" (change)="onSelectFile($event)" formControlName="photoUrl">

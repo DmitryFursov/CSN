@@ -25,6 +25,7 @@ export class AlertComponent implements OnInit, OnDestroy {
 
       const timeout = setTimeout(() => {
         clearTimeout(timeout)
+        this.text = ''
       }, this.delay)
     })
   }
@@ -34,5 +35,4 @@ export class AlertComponent implements OnInit, OnDestroy {
       this.aSub.unsubscribe
     }
   }
-
 }
