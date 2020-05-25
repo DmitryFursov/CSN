@@ -3,12 +3,11 @@
         <h2>{{post.title}}</h2>
         <small>{{post.date | date:'dd.MM.yyyy'}}</small>
     </mat-card-header>
-    <mat-card-content>
-        {{post.text}}
-    </mat-card-content>
+
+    <span>{{post.text}}</span>
 
     <mat-card-footer>
-        <small *ngIf="author$ | async as author">{{author.firstName}} {{author.lastName}}</small>
+        <a *ngIf="author$ | async as author" [routerLink]="['/userpage', author.uid]">{{author.firstName}} {{author.lastName}}</a>
     </mat-card-footer>
     <mat-card-actions>
         <button mat-icon-button mat-mini-fab *ngIf="isAuthenticated" (click)="ToggleLikePost()"
@@ -20,6 +19,6 @@
             {{localLikeList.length}} likes
         </label>
 
-        <button [routerLink]="['/post', post.id]" class="btn btn-dark">Открыть</button>
+        <button mat-raised-button [routerLink]="['/post', post.id]" class="btn btn-link">Открыть</button>
     </mat-card-actions>
 </mat-card>
