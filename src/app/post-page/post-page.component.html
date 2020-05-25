@@ -7,18 +7,19 @@
         </div>
 
         <div class="info">
-            <strong>{{ post.author }}</strong>
-            <small>{{ post.date | date:'long' }}</small>
+            <a *ngIf="author$ | async as author" [routerLink]="['/userpage', author.uid]">{{author.firstName}}
+                {{author.lastName}}</a>
+            <small>{{ post.date | date: 'medium' }}</small>
         </div>
 
         <div>
             <quill-view-html [content]="post.text"></quill-view-html>
         </div>
     </div>
-
-    <input type="text" [(ngModel)]="commentText" placeholder="введите комментарий" />
-    <input type="submit" (click)="submit()" />
-
+    <div id="comments">
+        <input type="text" [(ngModel)]="commentText" placeholder="введите комментарий" />
+        <input type="submit" (click)="submit()" />
+    </div>
     <div *ngIf="commentList$ | async as commentList; else loadingComments">
         <app-comment *ngFor="let comment of commentList" [comment]="comment"></app-comment>
     </div>

@@ -1,6 +1,19 @@
 <div *ngIf="user$ | async as user">
-    <a [routerLink]="['/userpage', user.uid]">
-        {{user.firstName}}
-    </a>
-    <p>{{comment.text}} </p>
+    <table>
+        <!--         <thead>
+            <th>Автор</th>
+            <th>Время</th>
+            <th>Текст комментария</th>
+        </thead>
+ -->
+        <tbody>
+            <tr>
+                <td class="author"><a [routerLink]="['/userpage', user.uid]">
+                        {{user.firstName}}</a>
+                </td>
+                <td class="date">{{comment.date | date:'short' }}</td>
+                <td class="text">{{comment.text}} </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

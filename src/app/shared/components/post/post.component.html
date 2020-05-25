@@ -4,21 +4,34 @@
         <small>{{post.date | date:'dd.MM.yyyy'}}</small>
     </mat-card-header>
 
-    <span>{{post.text}}</span>
+    <div class="card-content">
+        <quill-view-html [content]="post.text"></quill-view-html>
+    </div>
+
 
     <mat-card-footer>
-        <a *ngIf="author$ | async as author" [routerLink]="['/userpage', author.uid]">{{author.firstName}} {{author.lastName}}</a>
+        <a *ngIf="author$ | async as author" [routerLink]="['/userpage', author.uid]">{{author.firstName}}
+            {{author.lastName}}</a>
     </mat-card-footer>
     <mat-card-actions>
+        <button mat-raised-button [routerLink]="['/post', post.id]" class="btn btn-link">Открыть</button>
+        <a *ngIf="post.commentList" [routerLink]="['/post', post.id]" fragment="comments"
+            title="Количество комментариев" mat-icon-button>
+            <mat-icon>comment</mat-icon>{{post.commentList.length}}
+        </a>
+
         <button mat-icon-button mat-mini-fab *ngIf="isAuthenticated" (click)="ToggleLikePost()"
-            [disabled]="action==='none'" style="margin-right: 10px;" class="btn">
+            [disabled]="action==='none'" style="margin-right: 10px;" class="btn" 
+            [attr.title]="action === 'none' ? 'Ставить лайки своим сообщениям не предусмотрено': action ==='like' ? 'Добавить лайк этому сообщению' : 'Убрать свой лайк с этого поста'"
+            
+            >
             {{action === 'none' ? '': action ==='like' ? '' : '' }}
             <mat-icon [ngClass]="{'green-icon': action === 'like','red-icon': action === 'unlike'}">thumb_up</mat-icon>
         </button>
-        <label *ngIf="localLikeList.length>0">
-            {{localLikeList.length}} likes
+
+        <label *ngIf="localLikeList.length>0" title="{{localLikeList.length}} пользователей поставили лайк">
+            <mat-icon style="vertical-align: middle;">favorite</mat-icon> {{localLikeList.length}}
         </label>
 
-        <button mat-raised-button [routerLink]="['/post', post.id]" class="btn btn-link">Открыть</button>
     </mat-card-actions>
 </mat-card>
