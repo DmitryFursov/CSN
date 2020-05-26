@@ -8,7 +8,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { BrowserModule } from '@angular/platform-browser';
+//import { BrowserModule } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { AngularFireStorage } from "@angular/fire/storage";
 
@@ -20,6 +20,7 @@ import { AngularFireStorage } from "@angular/fire/storage";
         FormsModule,
         ReactiveFormsModule,
         MaterialModule,
+//        BrowserModule,
         HttpClientModule,
         QuillModule.forRoot()
     ],
@@ -29,6 +30,7 @@ import { AngularFireStorage } from "@angular/fire/storage";
         FormsModule,
         ReactiveFormsModule,
         MaterialModule,
+//        BrowserModule,
         HttpClientModule,
         QuillModule
     ],

@@ -59,13 +59,13 @@
 
     <div class="form-control" style="width: fit-content;">
         <label for="birthday">Birthday:</label>
-        <input type="date" id="birthday" name="birthday">
+        <input type="date" id="birthday" name="birthday" formControlName="birthday">
     </div>
 
 
     <div class="form-control">
         <label for="selectPhoto">Photo</label>
-        <img [src]="photoUrl"> <br />
+        <img [src]="photo"> <br />
         <input id="selectPhoto" type='file' accept="image/*" (change)="onSelectFile($event)" formControlName="photoUrl">
     </div>
 

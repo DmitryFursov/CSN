@@ -2,42 +2,31 @@
     <div class="post">
         <div class="header">
             <h1>Профиль пользователя</h1>
-
-            <button style="position: absolute; right: 20px;" routerLink="/users" class="btn btn-link">To users list</button>
+            <button style="position: absolute; right: 20px;" routerLink="/users" class="btn btn-link">To users
+                list</button>
         </div>
+
+        <table>
+            <tr>
+                <td style="width: 12rem;"><img *ngIf="user.photo" [src]="user.photo"
+                        style="width: 10rem; height: 10rem;"></td>
+                <td>
+                    <div class="info">
+                        <p>First Name: {{ user.firstName }}</p>
+                        <p>Last Name: {{ user.lastName }}</p>
+                        <p>BirthDay: {{user.birthday | date : 'shortDate'}}</p>
+                        <p>Sex: {{user.sex}}</p>
+                    </div>
+                </td>
+            </tr>
+        </table>
 
         <div class="info">
-            <p>{{ user.firstName }}</p>
-            <p>{{ user.lastName }}</p>
+            <p>Registration Date: {{user.regDate | date : 'shortDate'}}</p>
         </div>
 
-        <div class="info"> 
-            <p>{{user.birthday}}</p>
-        </div>
-        <div class="info"> 
-            <p>{{user.sex}}</p>
-        </div>
-
-        <div>
-            <quill-view-html [content]="user.firstName"></quill-view-html>
-        </div>
     </div>
 </ng-container>
-
-
-    <table>
-        <thead>
-            <th class="column left">Пользователи</th>
-            <th class="column right">Посты</th>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="column left">
-                </td>
-                <td class="column right">
-                </td>
-        </tbody>
-    </table>
 
 
 <ng-template #loading>

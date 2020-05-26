@@ -10,6 +10,7 @@ import { DashboardPageComponent } from '../dashboard-page/dashboard-page.compone
 import { AlertService } from '../shared/services/alert.service';
 import { ImageService } from '../shared/services/image.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { map, mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register-page',
@@ -19,7 +20,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class RegisterPageComponent implements OnInit {
 
   form: FormGroup
-  photoUrl: string;
   photo: any;
   sexValues = Object.values(Sex);
 
@@ -53,6 +53,7 @@ export class RegisterPageComponent implements OnInit {
     if (this.form.invalid) {
       return
     }
+
     const user: UserAuthData = {
       email: this.form.value.email,
       password: this.form.value.password
@@ -61,21 +62,26 @@ export class RegisterPageComponent implements OnInit {
     const userProfile: User = {
       firstName: this.form.value.firstName,
       lastName: this.form.value.lastName,
-      photoUrl: this.photo,
+      photo: this.photo,
       regDate: new Date(),
       sex: this.form.value.sex,
       birthday: new Date(this.form.value.birthday)
     }
-//    console.log(userProfile)
 
-     this.auth.register(user).subscribe((response) => {
-      this.usersService.create(userProfile, response.localId).subscribe(() => {
-        this.router.navigate(['/user', 'dashboard'])
-      })
-      this.form.reset()
-      this.alert.success('User Created')
-    })
-   }
+    this.auth.register(user)
+      .pipe(
+        mergeMap((response) => { return this.usersService.create(userProfile, response.localId) }),
+      )
+      .subscribe(
+        () => {
+          this.router.navigate(['/user', 'dashboard'])
+          this.alert.success('User Created')
+        },
+        (error) => {
+          this.alert.danger('User NOT Created: ' + error.error.error.message)
+        }
+      )
+  }
 
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
@@ -84,18 +90,7 @@ export class RegisterPageComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = (event) => {
         this.photo = event.target.result;
-        console.log(this.photo)
-
-        //доделать сохранение фото в базе и перерести в метод submit
-
-        //        this.imageService.uploadPhoto(this.photo);
       }
-      // const file = event.target.files[0];
-      // console.log(file)
-      /*       reader.onload = (event) => {
-              this.photoUrl = event.target.result.toString();
-            }
-       */
     }
   }
 }

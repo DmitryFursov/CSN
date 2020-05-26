@@ -47,14 +47,16 @@ export class CreatePostComponent implements OnInit {
       date: new Date()
     }
 
+    console.log(post.text)
+
     this.postsService.create(post)
       .subscribe(
         () => {
-        this.form.reset()
-        this.alert.success('Post Created')
-      },
+          this.form.reset()
+          this.alert.success('Post Created')
+        },
         () => {
-          this.alert.warning('Не получилось создать пост.')
+          this.alert.danger('Произошла ошибка. Пост не создан.')
         }
       )
   }

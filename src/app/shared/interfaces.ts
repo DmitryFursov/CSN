@@ -38,7 +38,7 @@ export interface User {
   birthday?: Date
   regDate?:Date
   email?:string
-  photoUrl?: string
+  photo?: string
   subscriptions?: string[]
 }
 
