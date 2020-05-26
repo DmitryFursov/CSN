@@ -8,10 +8,10 @@ import { UsersService } from './users.service';
 
 @Injectable({ providedIn: 'root' })
 export class PostsService {
-    constructor(private http: HttpClient,
-        private usersService: UsersService) { }
-    private post: Post
-    private localLikeList: string[] = []
+    constructor(
+        private http: HttpClient,
+        private usersService: UsersService) {
+    }
 
     create(post: Post): Observable<Post> {
         return this.http.post(`${environment.firebaseConfig.databaseURL}/posts.json`, post)
@@ -48,7 +48,7 @@ export class PostsService {
                 }
                 return user.subscriptions;
             }),
-            mergeMap(() => {                
+            mergeMap(() => {
                 const calls = []; // массив запросов к базе
                 localSubscriptionList.forEach(subuid => calls.push(this.getPostsByUserId(subuid))); // сообщения от подписок
                 calls.push(this.getPostsByUserId(uid)); // свои сообщения
@@ -67,7 +67,6 @@ export class PostsService {
     getPostById(id: string): Observable<Post> {
         return this.http.get<Post>(`${environment.firebaseConfig.databaseURL}/posts/${id}.json`)
             .pipe(map((post: Post) => {
-//                console.log(post)
                 return {
                     ...post, id,
                     date: new Date(post.date)
@@ -100,24 +99,25 @@ export class PostsService {
     toggleLike(id: string, uid: string) {
         return this.getPostById(id)
             .pipe(
-                tap(
-                    post => {
-                        this.post = post
-                        if (!!this.post.likeList) {
-                            this.localLikeList = this.post.likeList
+                map(
+                    (post) => {
+                        let localLikeList: string[] = []
+                        if (!!post.likeList) {
+                            localLikeList = post.likeList
                         }
 
-                        if (!this.localLikeList.includes(uid)) {
-                            this.localLikeList.push(uid)
+                        if (!localLikeList.includes(uid)) {
+                            localLikeList.push(uid)
                         }
                         else {
-                            const index = this.localLikeList.indexOf(uid)
-                            this.localLikeList.splice(index, 1)
+                            const index = localLikeList.indexOf(uid)
+                            localLikeList.splice(index, 1)
                         }
-                        this.post.likeList = this.localLikeList
-                        this.update(this.post).subscribe()
+                        post.likeList = localLikeList
+                        return post
                     }
-                )
+                ),
+                mergeMap((post)=>this.update(post))
             )
     }
 

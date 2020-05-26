@@ -14,15 +14,15 @@ import { AuthService } from '../shared/services/auth.service';
 })
 export class CreatePostComponent implements OnInit {
 
- form: FormGroup
+  form: FormGroup
 
-  currentUser$: Observable<User> 
+  currentUser$: Observable<User>
 
-  constructor( 
+  constructor(
     private postsService: PostsService,
-    private alert: AlertService ,
-    private usersService:UsersService,
-    private auth:AuthService
+    private alert: AlertService,
+    private usersService: UsersService,
+    private auth: AuthService
 
   ) { }
 
@@ -36,24 +36,26 @@ export class CreatePostComponent implements OnInit {
     })
   }
 
-  submit(){
-    if(this.form.invalid){
+  submit() {
+    if (this.form.invalid) {
       return
     }
-    const post: Post ={
+    const post: Post = {
       title: this.form.value.title,
       author: this.auth.uid,
       text: this.form.value.text,
-      date: new Date()       
+      date: new Date()
     }
-     
-    this.postsService.create(post).subscribe(()=>{
-      this.form.reset()
-      this.alert.success('Post Created')
-    })
 
+    this.postsService.create(post)
+      .subscribe(
+        () => {
+        this.form.reset()
+        this.alert.success('Post Created')
+      },
+        () => {
+          this.alert.warning('Не получилось создать пост.')
+        }
+      )
   }
-  
-
-  
 }

@@ -35,7 +35,7 @@ export interface User {
   firstName:string
   lastName:string
   sex?: Sex
-  birthDay?: Date
+  birthday?: Date
   regDate?:Date
   email?:string
   photoUrl?: string

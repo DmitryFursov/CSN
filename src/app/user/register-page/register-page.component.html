@@ -57,13 +57,9 @@
         </select>
     </div>
 
-    <div class="form-control">
-        <label for="birthDay">Sex:</label>
-        <mat-form-field>
-            <input matInput [matDatepicker]="myDatepicker">
-            <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
-            <mat-datepicker #myDatepicker></mat-datepicker>
-        </mat-form-field>
+    <div class="form-control" style="width: fit-content;">
+        <label for="birthday">Birthday:</label>
+        <input type="date" id="birthday" name="birthday">
     </div>
 
 

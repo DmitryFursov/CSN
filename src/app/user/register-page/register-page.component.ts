@@ -44,7 +44,7 @@ export class RegisterPageComponent implements OnInit {
       firstName: new FormControl(null, Validators.required),
       lastName: new FormControl(null, Validators.required),
       sex: new FormControl(),
-      birthDay: new FormControl(),
+      birthday: new FormControl(),
       photoUrl: new FormControl(null)
     })
   }
@@ -61,21 +61,21 @@ export class RegisterPageComponent implements OnInit {
     const userProfile: User = {
       firstName: this.form.value.firstName,
       lastName: this.form.value.lastName,
-      photoUrl: this.photoUrl,
+      photoUrl: this.photo,
       regDate: new Date(),
       sex: this.form.value.sex,
-      birthDay: new Date()
+      birthday: new Date(this.form.value.birthday)
     }
-    
-    this.auth.register(user).subscribe((response) => {
-      //       console.log(response)
+//    console.log(userProfile)
+
+     this.auth.register(user).subscribe((response) => {
       this.usersService.create(userProfile, response.localId).subscribe(() => {
         this.router.navigate(['/user', 'dashboard'])
       })
       this.form.reset()
       this.alert.success('User Created')
     })
-  }
+   }
 
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
@@ -86,9 +86,9 @@ export class RegisterPageComponent implements OnInit {
         this.photo = event.target.result;
         console.log(this.photo)
 
-        //доделать сохранение фото в базе
+        //доделать сохранение фото в базе и перерести в метод submit
 
-//        this.imageService.uploadPhoto(this.photo);
+        //        this.imageService.uploadPhoto(this.photo);
       }
       // const file = event.target.files[0];
       // console.log(file)

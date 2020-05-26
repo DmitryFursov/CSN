@@ -1,21 +1,45 @@
-<div *ngIf="user$ | async as user;else loading">
+<ng-container *ngIf="user$ | async as user;else loading">
     <div class="post">
         <div class="header">
-            <h1>{{user.firstName}}</h1>
+            <h1>Профиль пользователя</h1>
 
-            <button routerLink="/users" class="btn btn-link">To users list</button>
+            <button style="position: absolute; right: 20px;" routerLink="/users" class="btn btn-link">To users list</button>
         </div>
 
         <div class="info">
-            <strong>{{ user.firstName }}</strong>
-            <small>{{ user.firstName }}</small>
+            <p>{{ user.firstName }}</p>
+            <p>{{ user.lastName }}</p>
+        </div>
+
+        <div class="info"> 
+            <p>{{user.birthday}}</p>
+        </div>
+        <div class="info"> 
+            <p>{{user.sex}}</p>
         </div>
 
         <div>
             <quill-view-html [content]="user.firstName"></quill-view-html>
         </div>
     </div>
-</div>
+</ng-container>
+
+
+    <table>
+        <thead>
+            <th class="column left">Пользователи</th>
+            <th class="column right">Посты</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="column left">
+                </td>
+                <td class="column right">
+                </td>
+        </tbody>
+    </table>
+
+
 <ng-template #loading>
     <p class="text-center">loading...</p>
 </ng-template>

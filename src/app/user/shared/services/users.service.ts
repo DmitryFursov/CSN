@@ -75,8 +75,7 @@ export class UsersService {
                         return user
                     }
                 ),
-                mergeMap(user => this.update(user)
-                )
+                mergeMap(user => this.update(user))
             )
     }
 }
