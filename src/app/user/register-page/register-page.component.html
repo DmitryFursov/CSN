@@ -65,7 +65,7 @@
 
     <div class="form-control">
         <label for="selectPhoto">Photo</label>
-        <img [src]="photo"> <br />
+        <img *ngIf="photo" [src]="photo"> <br />
         <input id="selectPhoto" type='file' accept="image/*" (change)="onSelectFile($event)" formControlName="photoUrl">
     </div>
 
