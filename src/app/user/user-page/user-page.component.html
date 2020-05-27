@@ -2,8 +2,7 @@
     <div class="post">
         <div class="header">
             <h1>Профиль пользователя</h1>
-            <button style="position: absolute; right: 20px;" routerLink="/users" class="btn btn-link">To users
-                list</button>
+            <button style="position: absolute; right: 20px;" routerLink="/users" class="btn btn-link">To users list</button>
         </div>
 
         <table>
@@ -14,7 +13,7 @@
                     <div class="info">
                         <p>First Name: {{ user.firstName }}</p>
                         <p>Last Name: {{ user.lastName }}</p>
-                        <p>BirthDay: {{user.birthday | date : 'shortDate'}}</p>
+                        <p>BirthDay: {{user.birthday | date : 'mediumDate'}}</p>
                         <p>Sex: {{user.sex}}</p>
                     </div>
                 </td>
@@ -22,7 +21,7 @@
         </table>
 
         <div class="info">
-            <p>Registration Date: {{user.regDate | date : 'shortDate'}}</p>
+            <p>Registration Date: {{user.regDate | date : 'mediumDate'}}</p>
         </div>
 
     </div>

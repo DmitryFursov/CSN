@@ -1,5 +1,13 @@
 <ng-container *ngIf="{posts: posts$ | async, users: users$ | async } as pagecontent; else loading">
-    <table>
+<!--     <label for="showallcheckbox">Показывать все посты
+        <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
+    </label>
+    <input type="checkbox" id="showallcheckbox" name="showallcheckbox">
+ -->
+     <table>
         <thead>
             <th class="column left">Пользователи</th>
             <th class="column right">Посты</th>

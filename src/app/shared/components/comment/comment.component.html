@@ -1,15 +1,9 @@
 <div *ngIf="user$ | async as user">
     <table>
-        <!--         <thead>
-            <th>Автор</th>
-            <th>Время</th>
-            <th>Текст комментария</th>
-        </thead>
- -->
         <tbody>
             <tr>
                 <td class="author"><a [routerLink]="['/userpage', user.uid]">
-                        {{user.firstName}}</a>
+                        {{user.firstName}} {{user.lastName}}</a>
                 </td>
                 <td class="date">{{comment.date | date:'short' }}</td>
                 <td class="text">{{comment.text}} </td>

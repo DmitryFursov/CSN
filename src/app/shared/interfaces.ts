@@ -40,6 +40,7 @@ export interface User {
   email?:string
   photo?: string
   subscriptions?: string[]
+  bio?: string
 }
 
 export interface Commentary{

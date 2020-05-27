@@ -8,7 +8,7 @@
           <td style="width: 2.5rem;"><img *ngIf="user.photo" src="{{user.photo}}" style="width: 2rem; height: 2rem;"></td>
           <td>
             <div class="info">
-              <p>BirthDay: {{user.birthday | date : 'shortDate'}}</p>
+              <p>BirthDay: {{user.birthday | date : 'mediumDate'}}</p>
               <p>{{user.sex}}</p>
             </div>
           </td>

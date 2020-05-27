@@ -14,6 +14,8 @@ import { UsersPageComponent } from './users-page/users-page.component';
 import { UserComponent } from './shared/components/smallUser/smallUser.component';
 import { CommentComponent } from './shared/components/comment/comment.component';
 import { UserModule } from './user/user.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 
@@ -38,7 +40,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     BrowserModule,
 //    UserModule,    
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent]
