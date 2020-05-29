@@ -33,15 +33,23 @@
   "dataGroups": [
     {
       "name": "firebase-posts",
-      "urls": ["https://ang-blog-bcbbe.firebaseio.com/posts/**"],
-      "cacheConfig": {"maxSize": 5, "maxAge": "3600", "strategy": "performance", "timeout": "2s"}
+      "urls": [
+        "https://ang-blog-bcbbe.firebaseio.com/posts/**"
+      ],
+      "cacheConfig": {
+        "maxSize": 20,
+        "maxAge": "3600"
+      }
     },
     {
       "name": "firebase-users",
-      "urls": ["https://ang-blog-bcbbe.firebaseio.com/users/**"],
-      "cacheConfig": {"maxSize": 5, "maxAge": "3600", "strategy": "performance", "timeout": "30u"}
+      "urls": [
+        "https://ang-blog-bcbbe.firebaseio.com/users/**"
+      ],
+      "cacheConfig": {
+        "maxSize": 20,
+        "maxAge": "3600"
+      }
     }
-
-    
   ]
 }

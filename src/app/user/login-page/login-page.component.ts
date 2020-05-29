@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserAuthData } from '../../shared/interfaces';
 import { AuthService } from '../shared/services/auth.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { AlertService } from '../shared/services/alert.service';
 
 @Component({
   selector: 'app-login-page',
@@ -18,7 +19,8 @@ export class LoginPageComponent implements OnInit {
   constructor(
     public auth: AuthService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private alert: AlertService
   ) {
   }
 
@@ -61,6 +63,7 @@ export class LoginPageComponent implements OnInit {
       this.router.navigate(['', '/'])
       this.submitted = false
     }, () => {
+      this.alert.danger('Ошибка')
       this.submitted = false
     })
   }
